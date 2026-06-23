@@ -3,10 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>청년문화예술패스 도서 지원 대상 여부 확인</title>
+
+<!-- SEO -->
+<title>청년문화예술패스 도서 지원 대상 확인 — ISBN 조회기</title>
+<meta name="description" content="ISBN 부가기호를 입력해 청년문화예술패스(2026) 지원 대상 도서 여부를 확인합니다. 독자대상·발행형태·내용분류 기준을 자동으로 판정합니다.">
+<meta name="keywords" content="청년문화예술패스, ISBN 확인, 도서 지원, 부가기호">
+<meta name="author" content="한국출판인회의 (KOPUS)">
+<link rel="canonical" href="https://kopus2333.github.io/youthbook/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kopus2333.github.io/youthbook/">
+<meta property="og:title" content="청년문화예술패스 도서 지원 대상 확인">
+<meta property="og:description" content="ISBN 부가기호(18자리)를 입력하면 청년문화예술패스 구매 가능 여부를 즉시 알려드립니다.">
+<meta property="og:locale" content="ko_KR">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="청년문화예술패스 도서 지원 대상 확인">
+<meta name="twitter:description" content="ISBN 부가기호(18자리)를 입력하면 청년문화예술패스 구매 가능 여부를 즉시 알려드립니다.">
+
+<!-- Fonts & Icons -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
+
 <style>
 /* ── Reset ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -219,7 +240,7 @@ body {
 
 /* ── Digit Strip ── */
 .strip-wrap {
-  margin: 20px 0;
+  margin: 20px 0 0;
 }
 .strip-title {
   font-size: 11px;
@@ -566,6 +587,17 @@ code {
 .ok-row .range-label { color: var(--blue-900); }
 .ng-row .range-label { color: var(--red-700); }
 
+/* ── Mobile tweaks ── */
+@media(max-width: 480px) {
+  .header-title { font-size: 15px; }
+  .header-badge { display: none; }
+  .isbn-row { flex-direction: column; }
+  .check-btn { width: 100%; justify-content: center; }
+  .tab { padding: 10px 12px; font-size: 13px; }
+  .tab span.tab-text { display: none; }
+  .digit-strip { flex-wrap: wrap; gap: 4px; }
+}
+
 /* ── Disclaimer ── */
 .disclaimer {
   max-width: 780px;
@@ -585,6 +617,23 @@ code {
 .disclaimer-inner i { font-size: 14px; margin-top: 2px; flex-shrink: 0; color: var(--gray-300); }
 .disclaimer-inner a { color: var(--blue-700); text-decoration: none; }
 .disclaimer-inner a:hover { text-decoration: underline; }
+
+/* ── Footer ── */
+.site-footer {
+  background: var(--blue-900);
+  padding: 24px;
+  text-align: center;
+}
+.site-footer p {
+  font-size: 12px;
+  color: var(--blue-200);
+  line-height: 1.8;
+}
+.site-footer a {
+  color: var(--blue-100);
+  text-decoration: none;
+}
+.site-footer a:hover { text-decoration: underline; }
 </style>
 </head>
 <body>
@@ -595,28 +644,28 @@ code {
       <i class="ti ti-scan" aria-hidden="true"></i>
     </div>
     <div class="header-text">
-      <div class="header-eyebrow"></div>
-      <div class="header-title">청년문화예술패스 도서 지원 대상 여부 확인</div>
+      <div class="header-eyebrow"</div>
+      <div class="header-title">청년문화예술패스 도서 지원 대상 확인</div>
     </div>
     <span class="header-badge">2026년 기준</span>
   </div>
 </header>
 
 <main class="main">
-  <div class="tabs">
-    <button class="tab active" onclick="switchTab('single')">
-      <i class="ti ti-barcode" aria-hidden="true"></i> 단권 확인
+  <div class="tabs" role="tablist">
+    <button class="tab active" role="tab" aria-selected="true" onclick="switchTab('single',this)">
+      <i class="ti ti-barcode" aria-hidden="true"></i> <span class="tab-text">단권 확인</span>
     </button>
-    <button class="tab" onclick="switchTab('batch')">
-      <i class="ti ti-list-check" aria-hidden="true"></i> 일괄 확인
+    <button class="tab" role="tab" aria-selected="false" onclick="switchTab('batch',this)">
+      <i class="ti ti-list-check" aria-hidden="true"></i> <span class="tab-text">일괄 확인</span>
     </button>
-    <button class="tab" onclick="switchTab('guide')">
-      <i class="ti ti-info-circle" aria-hidden="true"></i> 분류 기준
+    <button class="tab" role="tab" aria-selected="false" onclick="switchTab('guide',this)">
+      <i class="ti ti-info-circle" aria-hidden="true"></i> <span class="tab-text">분류 기준</span>
     </button>
   </div>
 
   <!-- 단권 확인 -->
-  <div id="pane-single" class="pane active">
+  <div id="pane-single" class="pane active" role="tabpanel">
     <div class="card">
       <div class="section-label">ISBN 입력</div>
       <div class="isbn-row">
@@ -624,9 +673,10 @@ code {
           <i class="ti ti-barcode" aria-hidden="true"></i>
           <input type="text" id="isbn-input" maxlength="22"
             placeholder="9791162540000 03810"
+            aria-label="ISBN 13자리와 부가기호 5자리 입력"
             oninput="onInput()" onkeydown="if(event.key==='Enter')check()" />
         </div>
-        <button class="check-btn" onclick="check()">
+        <button class="check-btn" onclick="check()" aria-label="확인">
           <i class="ti ti-search" aria-hidden="true"></i> 확인
         </button>
       </div>
@@ -655,7 +705,7 @@ code {
       </div>
     </div>
 
-    <div class="result-card idle" id="result-card">
+    <div class="result-card idle" id="result-card" role="status" aria-live="polite">
       <div class="result-head">
         <div class="result-status-icon" id="result-status-icon">
           <i class="ti ti-clipboard-text" id="result-icon" aria-hidden="true"></i>
@@ -672,10 +722,10 @@ code {
   </div>
 
   <!-- 일괄 확인 -->
-  <div id="pane-batch" class="pane">
+  <div id="pane-batch" class="pane" role="tabpanel">
     <div class="card">
       <div class="section-label">ISBN 목록 — 한 줄에 하나씩, 책 제목 포함 가능</div>
-      <textarea id="batch-input" placeholder="9791162540000 03810 책제목
+      <textarea id="batch-input" aria-label="ISBN 목록 입력" placeholder="9791162540000 03810 책제목
 9788936434120 04810 채식주의자
 9788934972464 01800"></textarea>
       <div class="batch-actions">
@@ -685,11 +735,11 @@ code {
         <button class="btn-secondary" onclick="clearBatch()">지우기</button>
       </div>
     </div>
-    <div id="batch-result"></div>
+    <div id="batch-result" role="status" aria-live="polite"></div>
   </div>
 
   <!-- 분류 기준 -->
-  <div id="pane-guide" class="pane">
+  <div id="pane-guide" class="pane" role="tabpanel">
     <div class="guide-grid">
       <!-- 독자대상 -->
       <div class="guide-card">
@@ -765,10 +815,18 @@ code {
     <i class="ti ti-alert-circle" aria-hidden="true"></i>
     <span>
       본 페이지는 <strong>참고용</strong>으로만 활용하시기 바랍니다. 정확한 지원 여부 및 최종 분류 기준은
-      <a href="https://artnuri.or.kr/crawler/info/view.do?crawlerPageIndex=1&noticePageIndex=1&key=2301170002&docid=CRL3533&source=%ED%95%9C%EA%B5%AD%EB%AC%B8%ED%99%94%EC%98%88%EC%88%A0%EC%9C%84%EC%9B%90%ED%9A%8C&seNo=001&pstSn=&sw=%EC%B2%AD%EB%85%84%EB%AC%B8%ED%99%94%EC%98%88%EC%88%A0" id="official-link" target="_blank" rel="noopener">한국문화예술위원회</a>의 분류 기준을 반드시 확인하시기 바랍니다.
+      <a href="https://artnuri.or.kr/crawler/info/view.do?crawlerPageIndex=1&noticePageIndex=1&key=2301170002&docid=CRL3533&source=%ED%95%9C%EA%B5%AD%EB%AC%B8%ED%99%94%EC%98%88%EC%88%A0%EC%9C%84%EC%9B%90%ED%9A%8C&seNo=001&pstSn=&sw=%EC%B2%AD%EB%85%84%EB%AC%B8%ED%99%94%EC%98%88%EC%88%A0" target="_blank" rel="noopener">한국문화예술위원회 공고</a>를 반드시 확인하시기 바랍니다.
     </span>
   </div>
 </div>
+
+<footer class="site-footer">
+  <p>
+    제공: <a href="https://www.kopus.org" target="_blank" rel="noopener"></a>
+    &nbsp;·&nbsp; </a>
+    &nbsp;·&nbsp; 2026년 기준 · 참고용
+  </p>
+</footer>
 
 <script>
 const READER_ALLOW = new Set(['0','9']);
@@ -804,7 +862,7 @@ function evaluate(p) {
     checks: [
       { ok:r1ok, label:`독자대상 (${p.d1}) — ${R1MAP[p.d1]||'기타'}`, sub: r1ok ? '허용 대상입니다 (교양·전문)' : '교양(0) 또는 전문(9)만 허용됩니다' },
       { ok:r2ok, label:`발행형태 (${p.d2}) — ${R2MAP[p.d2]||'기타'}`, sub: r2ok ? '허용 형태입니다' : '사전(1)과 전자출판물(5)은 제외됩니다' },
-      { ok:r3ok, label:`내용분류 (${p.d3raw}) — ${r3ok ? label : '지원 외 분야'}`, sub: r3ok ? `허용 범위에 포함됩니다` : '철학·종교·예술·문학·역사·총류·사회과학일반·언어일반 범위만 허용됩니다' },
+      { ok:r3ok, label:`내용분류 (${p.d3raw}) — ${r3ok ? label : '지원 외 분야'}`, sub: r3ok ? '허용 범위에 포함됩니다' : '철학·종교·예술·문학·역사·총류·사회과학일반·언어일반 범위만 허용됩니다' },
     ]
   };
 }
@@ -865,10 +923,14 @@ function onInput() {
   if (document.getElementById('isbn-input').value.replace(/[\s\-]/g,'').length===18) check();
 }
 
-function switchTab(name) {
-  ['single','batch','guide'].forEach((n,i) => {
-    document.querySelectorAll('.tab')[i].classList.toggle('active', n===name);
-    document.getElementById('pane-'+n).classList.toggle('active', n===name);
+function switchTab(name, btn) {
+  const tabs = document.querySelectorAll('.tab');
+  const panes = ['single','batch','guide'];
+  tabs.forEach((t, i) => {
+    const active = panes[i] === name;
+    t.classList.toggle('active', active);
+    t.setAttribute('aria-selected', active);
+    document.getElementById('pane-' + panes[i]).classList.toggle('active', active);
   });
 }
 
