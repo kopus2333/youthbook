@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>8월 10일, 청년문화예술패스에 책이 들어옵니다</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root{
+  --paper:#FAFAF6;
+  --ink:#1B1E28;
+  --ink-soft:#5A5E6B;
+  --marker:#FFE84B;
+  --blue:#2B4BF2;
+  --line:#E4E3DC;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Pretendard Variable",Pretendard,-apple-system,sans-serif;
+  background:var(--paper);color:var(--ink);
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+section{
+  min-height:100svh;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:80px 24px;
+  max-width:720px;margin:0 auto;
+  position:relative;
+}
+.eyebrow{
+  font-size:13px;font-weight:700;letter-spacing:.14em;
+  color:var(--ink-soft);text-transform:uppercase;
+  margin-bottom:20px;
+}
+h1,h2{font-family:"Noto Serif KR",serif;font-weight:900;letter-spacing:-.01em}
+h1{font-size:clamp(34px,8vw,58px);line-height:1.28}
+h2{font-size:clamp(26px,6vw,40px);line-height:1.34;margin-bottom:28px}
+p.lead{font-size:clamp(16px,4vw,19px);color:var(--ink-soft);margin-top:24px;word-break:keep-all}
+p{word-break:keep-all}
+
+/* 형광펜 하이라이트 — 시그니처 */
+.hl{position:relative;white-space:nowrap}
+.hl::before{
+  content:"";position:absolute;left:-2%;right:-2%;bottom:6%;height:46%;
+  background:var(--marker);z-index:-1;
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .8s cubic-bezier(.25,.8,.3,1) .2s;
+}
+.inview .hl::before{transform:scaleX(1)}
+
+/* 카드/정보 */
+.grid{display:grid;gap:12px;margin-top:36px}
+.card{
+  border:1px solid var(--line);border-radius:14px;
+  background:#fff;padding:20px 22px;
+}
+.card .k{font-size:13px;font-weight:700;color:var(--ink-soft);margin-bottom:6px}
+.card .v{font-size:19px;font-weight:700}
+.card .v em{font-style:normal;color:var(--blue)}
+
+/* 대비 스탯 */
+.versus{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:36px}
+.versus .cell{padding:24px 4px;text-align:center;border-top:3px solid var(--ink)}
+.versus .cell.dim{border-top-color:var(--line)}
+.versus .num{font-family:"Noto Serif KR",serif;font-weight:900;font-size:clamp(38px,10vw,58px);line-height:1.1}
+.versus .cell.dim .num{color:var(--ink-soft)}
+.versus .num small{font-size:.4em;font-weight:600;color:var(--ink-soft)}
+.versus .lab{font-size:14px;font-weight:600;color:var(--ink-soft);margin-top:8px}
+
+/* 막대 차트 */
+.bars{margin-top:36px;display:flex;flex-direction:column;gap:14px}
+.bar-row{display:grid;grid-template-columns:64px 1fr 62px;align-items:center;gap:10px;font-size:14px}
+.bar-row .name{font-weight:700}
+.bar-row .amt{text-align:right;font-weight:600;color:var(--ink-soft);font-variant-numeric:tabular-nums}
+.track{height:26px;background:#F0EFE8;border-radius:6px;overflow:hidden}
+.fill{
+  height:100%;border-radius:6px;background:var(--ink);
+  width:0;transition:width 1s cubic-bezier(.25,.8,.3,1) .15s;
+}
+.fill.marker{background:var(--marker);border:1px solid #E8CF1E}
+.inview .fill{width:var(--w)}
+.chart-note{font-size:13px;color:var(--ink-soft);margin-top:14px}
+
+/* 근거 리스트 */
+.reasons{margin-top:36px;display:flex;flex-direction:column}
+.reason{padding:24px 0;border-top:1px solid var(--line)}
+.reason:last-child{border-bottom:1px solid var(--line)}
+.reason h3{font-size:18px;font-weight:800;margin-bottom:8px}
+.reason p{font-size:15px;color:var(--ink-soft)}
+
+/* 액션 체크리스트 */
+.todo{margin-top:36px;display:flex;flex-direction:column;gap:14px}
+.todo-item{
+  background:#fff;border:1px solid var(--line);border-radius:14px;
+  padding:20px 22px;display:grid;grid-template-columns:36px 1fr;gap:14px;
+}
+.todo-item .no{
+  width:36px;height:36px;border-radius:10px;background:var(--marker);
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Noto Serif KR",serif;font-weight:900;font-size:17px;
+}
+.todo-item h3{font-size:16.5px;font-weight:800;margin-bottom:5px}
+.todo-item p{font-size:14.5px;color:var(--ink-soft)}
+.todo-item .ex{
+  margin-top:10px;font-size:13.5px;background:#FBF9EE;
+  border-left:3px solid var(--marker);border-radius:0 8px 8px 0;
+  padding:10px 14px;color:var(--ink);
+}
+
+/* 타임라인 */
+.timeline{margin-top:36px;display:flex;flex-direction:column;gap:20px}
+.tl{display:grid;grid-template-columns:86px 1fr;gap:16px;align-items:start}
+.tl .date{font-family:"Noto Serif KR",serif;font-weight:900;font-size:20px;line-height:1.3}
+.tl .date span{display:block;font-family:Pretendard,sans-serif;font-size:12px;font-weight:600;color:var(--ink-soft)}
+.tl .what{font-size:15px;padding-top:2px}
+.tl.key .date{color:var(--blue)}
+
+/* 링크 버튼 */
+.links{margin-top:36px;display:flex;flex-direction:column;gap:12px}
+.link-btn{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  background:#fff;border:1.5px solid var(--ink);border-radius:14px;
+  padding:18px 22px;text-decoration:none;color:var(--ink);
+  transition:transform .15s ease,box-shadow .15s ease;
+}
+.link-btn:hover{transform:translateY(-2px);box-shadow:0 6px 0 rgba(27,30,40,.12)}
+.link-btn .t{font-size:16px;font-weight:800}
+.link-btn .d{font-size:13px;color:var(--ink-soft);margin-top:2px}
+.link-btn .arrow{font-size:20px;font-weight:900;flex-shrink:0}
+.link-btn.soon{border-style:dashed;border-color:var(--ink-soft)}
+.link-btn.soon .badge{
+  flex-shrink:0;font-size:11.5px;font-weight:700;color:var(--ink);
+  background:var(--marker);border-radius:99px;padding:4px 10px;
+}
+
+/* CTA */
+.cta-box{
+  margin-top:40px;background:var(--ink);color:var(--paper);
+  border-radius:18px;padding:32px 28px;
+}
+.cta-box h3{font-family:"Noto Serif KR",serif;font-size:22px;font-weight:900;margin-bottom:14px}
+.cta-box p{font-size:15px;opacity:.85}
+.cta-box .contact{margin-top:22px;padding-top:20px;border-top:1px solid rgba(255,255,255,.18);font-size:14px;line-height:2}
+.cta-box a{color:var(--marker);text-decoration:none;font-weight:700}
+
+.scroll-hint{
+  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+  font-size:12px;color:var(--ink-soft);letter-spacing:.1em;
+  animation:bob 2s ease-in-out infinite;
+}
+@keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,7px)}}
+
+footer{
+  text-align:center;padding:40px 24px 60px;
+  font-size:12px;color:var(--ink-soft);
+}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.inview .reveal{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+  .hl::before{transform:scaleX(1)}
+  .fill{width:var(--w)}
+  .reveal{opacity:1;transform:none}
+}
+@media (max-width:400px){
+  .bar-row{grid-template-columns:52px 1fr 56px;font-size:13px}
+}
+</style>
+</head>
+<body>
+
+<!-- 2. 패스 기본 정보 -->
+<section class="sec">
+  <p class="eyebrow reveal">청년문화예술패스, 30초 요약</p>
+  <h2 class="reveal">청년에게 주어지는<br>4만 원의 도서구입비</h2>
+  <p class="lead reveal">문화체육관광부·한국문화예술위원회가 2006~2007년생 청년에게 문화 포인트를 지원합니다. 8월 10일부터는 이 포인트로 도서도 구입할 수 있어요.<br>"청년 독자"를 만날 수 있는 좋은 기회!😀</p>
+  <div class="grid reveal">
+    <div class="card"><div class="k">누구에게</div><div class="v">2006~2007년생 청년 · 생애 최초 1회</div></div>
+    <div class="card"><div class="k">얼마나</div><div class="v">수도권 <em>15만 원</em> · 비수도권 <em>20만 원</em></div></div>
+    <div class="card"><div class="k">도서 구입 한도</div><div class="v">지원금의 20% 이내 — 수도권 <em>3만 원</em> · 비수도권 <em>4만 원</em></div><div style="font-size:12.5px;color:var(--ink-soft);margin-top:6px">패스 발급 시 거주지 기준 적용</div></div>
+    <div class="card"><div class="k">어디에</div><div class="v">공연·전시·영화 + <em>8월 10일부터 도서</em></div></div>
+    <div class="card"><div class="k">도서 판매처</div><div class="v"><em>예스24</em> · <em>서점ON</em></div><div style="font-size:12.5px;color:var(--ink-soft);margin-top:6px">서점ON 홈페이지에서 주문, 오프라인 서점에서 수령</div></div>
+  </div>
+</section>
+
+<!-- 3. 발급 vs 집행 -->
+<section class="sec">
+  <p class="eyebrow reveal">청년들의 사용 패턴 ①</p>
+  <h2 class="reveal">카드는 받았는데,<br><span class="hl">절반을 못 썼다?</span></h2>
+  <p class="lead reveal">2025년, 대상 청년 4명 중 3명이 카드를 만들었습니다. 그런데 예산은 절반밖에 안 쓰였어요. 쓰고 싶은 데가 마땅치 않았다는 뜻입니다.</p>
+  <div class="versus reveal">
+    <div class="cell dim"><div class="num">74.2<small>%</small></div><div class="lab">카드 발급률</div></div>
+    <div class="cell"><div class="num">51.2<small>%</small></div><div class="lab">예산 집행률</div></div>
+  </div>
+  <p class="chart-note reveal">총예산 229.5억 원 중 사용액 117.4억 원 · 미사용액 약 112억원</p>
+</section>
+
+<!-- 4. 장르 편중 + 지역 격차 (통합) -->
+<section class="sec">
+  <p class="eyebrow reveal">청년들의 사용 패턴 ②</p>
+  <h2 class="reveal">2025년 사용액의 79%는 공연으로,<br>공연은 수도권으로</h2>
+  <p class="lead reveal">사용액의 79%가 콘서트·뮤지컬에 몰렸습니다. 공연장이 있어야 즐길 수 있는 장르에 편중되다 보니, 집행률도 수도권 평균 약 58%, 그 외 지역 평균 약 43%로 갈렸어요. <br>책은 다릅니다. 어디서든, 언제든 살 수 있으니까요.🤩</p>
+  <div class="bars reveal">
+    <div class="bar-row"><span class="name">콘서트</span><div class="track"><div class="fill" style="--w:100%"></div></div><span class="amt">53.0억</span></div>
+    <div class="bar-row"><span class="name">뮤지컬</span><div class="track"><div class="fill" style="--w:75%"></div></div><span class="amt">39.7억</span></div>
+    <div class="bar-row"><span class="name">클래식</span><div class="track"><div class="fill" style="--w:17%"></div></div><span class="amt">8.8억</span></div>
+    <div class="bar-row"><span class="name">전시</span><div class="track"><div class="fill" style="--w:13%"></div></div><span class="amt">6.9억</span></div>
+    <div class="bar-row"><span class="name">도서</span><div class="track"><div class="fill marker" style="--w:8%"></div></div><span class="amt">8/10~</span></div>
+  </div>
+  <div class="versus reveal">
+    <div class="cell"><div class="num">58<small>%</small></div><div class="lab">수도권 평균 집행률</div></div>
+    <div class="cell dim"><div class="num">43<small>%</small></div><div class="lab">그 외 지역 평균 집행률</div></div>
+  </div>
+  <p class="chart-note">2025년 장르별 사용액 · 집행률은 시도별 단순 평균(수도권: 서울·인천·경기 / 최고 서울 61.7% · 최저 제주 30.1%)</p>
+</section>
+
+<!-- 6. 왜 기회인가 -->
+<section class="sec">
+  <p class="eyebrow reveal">그래서, 왜 책인가</p>
+  <h2 class="reveal">올해 하반기<br><span class="hl">청년 독자를 만날 기회!</span></h2>
+  <div class="reasons reveal">
+    <div class="reason">
+      <h3>① 갈 곳 잃은 미사용액 → 책 구매로</h3>
+      <p>집행률 51.2%. 남은 절반의 예산이 갈 곳을 찾고 있습니다. 1~2만 원대 도서는 남은 포인트를 쓰기에 안성맞춤!</p>
+    </div>
+    <div class="reason">
+      <h3>② 책은 언제 어디서든 살 수 있어요</h3>
+      <p>집행률 수도권 평균 58% vs 그 외 지역 43%. 주변에 공연장이 없어 패스를 못 쓰던 청년도, 책은 살 수 있으니까요!</p>
+    </div>
+    <div class="reason">
+      <h3>③ 8월 10일, 포인트 꽉 찬 신규 이용자 유입</h3>
+      <p>도서 분야가 추가되는 날, 미사용 포인트 회수분으로 신규 발급이 함께 시작됩니다. </p>
+    </div>
+  </div>
+</section>
+
+<!-- 7. 지금 할 수 있는 일 -->
+<section class="sec">
+  <p class="eyebrow reveal">출판사가 지금 할 수 있는 일</p>
+  <h2 class="reveal">거창할 필요 없어요,<br>이런 것부터 가볍게</h2>
+  <p class="lead reveal"> 각 사의 채널에서, 각 사의 톤으로. </p>
+  <div class="todo reveal">
+    <div class="todo-item">
+      <div class="no">1</div>
+      <div>
+        <h3>저희가 드리는 홍보 콘텐츠</h3>
+        <p>저희가 드리는 포스터/SNS 게시물/청년문화예술패스 CI를 활용하세요. 자유롭게 수정해서 제작 시간은 짧게!</p>
+        <div class="ex">"이제 청년문화예술패스로 책 살 수 있는 거 아셨나요? 📚 "</div>
+      </div>
+    </div>
+    <div class="todo-item">
+      <div class="no">2</div>
+      <div>
+        <h3>"스무 살에게 건네고 싶은 책" 피드</h3>
+        <p>에디터의 진심 코멘트 한 줄이 붙으면 더 좋아요. 한국출판인회의·대한출판문화협회가 함께 준비한 &lt;청춘독서 큐레이션&gt;에 참여하셨다면, 큐레이션 도서를 소개해 주시면 콘텐츠가 더 풍성해집니다.</p>
+        <div class="ex">"편집자 K가 스무 살의 나에게 부치는 책 3권"</div>
+      </div>
+    </div>
+    <div class="todo-item">
+      <div class="no">3</div>
+      <div>
+        <h3>정기 콘텐츠에 한 줄만 얹기</h3>
+        <p>이미 예정된 신간 소개, 카드뉴스, 뉴스레터 끝에 문장 하나만 추가하세요. .</p>
+        <div class="ex">"이 책은 청년문화예술패스로 구매할 수 있어요"</div>
+      </div>
+    </div>
+    <div class="todo-item">
+      <div class="no">4</div>
+      <div>
+        <h3>해시태그로 함께 묶이기</h3>
+        <p>SNS에서의 유입 가능성을 높여 보아요!</p>
+        <div class="ex">#청년문화예술패스 #청춘독서 </div>
+      </div>
+    </div>
+  </div>
+  <div class="links reveal">
+    <!-- TODO: href를 포스터 파일(다운로드) 링크로 교체 -->
+    <a class="link-btn" href="#" target="_blank" rel="noopener">
+      <div><div class="t">홍보 콘텐츠 내려받기</div><div class="d"></div></div>
+      <span class="arrow">↓</span>
+    </a>
+    <!-- TODO: href를 이용자 안내 페이지 링크로 교체 -->
+    <a class="link-btn" href="#" target="_blank" rel="noopener">
+      <div><div class="t">청년 이용자 안내 페이지</div><div class="d">게시물·스토리·프로필에 링크로 첨부해 활용하세요</div></div>
+      <span class="arrow">→</span>
+    </a>
+  </div>
+</section>
+
+<!-- 8. 일정 + 링크 + CTA -->
+<section class="sec">
+  <p class="eyebrow reveal">일정과 링크</p>
+  <div class="timeline reveal">
+    <div class="tl"><div class="date">7.31<span>(금)</span></div><div class="what">1차 발급자 미사용 포인트 전액 회수 마감</div></div>
+    <div class="tl key"><div class="date">8.10<span>(월)</span></div><div class="what"><strong>도서 분야 지원 개시</strong> · 2차 발급 선착순 시작·예스24/서점온 <청춘독서> 큐레이션 오픈</div></div>
+  </div>
+  <div class="links reveal">
+    <a class="link-btn" href="https://www.youthculturepass.or.kr" target="_blank" rel="noopener">
+      <div><div class="t">청년문화예술패스 누리집</div><div class="d">사업 안내 · 사용처 · 공식 로고 및 이미지</div></div>
+      <span class="arrow">→</span>
+    </a>
+    <a class="link-btn soon" href="https://www.yes24.com" target="_blank" rel="noopener">
+      <div><div class="t">예스24</div><div class="d">협력 판매처</div></div>
+      <span class="badge">8. 10 공개</span>
+    </a>
+    <a class="link-btn soon" href="https://www.booktown.or.kr" target="_blank" rel="noopener">
+      <div><div class="t">서점ON</div><div class="d">협력 판매처 · 온라인 주문 후 가입 서점에서 수령</div></div>
+      <span class="badge">8. 10 공개</span>
+    </a>
+  </div>
+</section>
+
+<footer>
+  자료 출처: 한국문화예술위원회(2025년 청년문화예술패스 집행 현황, 투데이신문 정보공개청구 보도 2026.7.28) · 청년문화예술패스 누리집<br>
+  ⓒ 한국출판인회의
+</footer>
+
+<script>
+const io=new IntersectionObserver(es=>{
+  es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('inview'); io.unobserve(e.target);} });
+},{threshold:.25});
+document.querySelectorAll('.sec').forEach(s=>io.observe(s));
+</script>
+</body>
+</html>
