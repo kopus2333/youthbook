@@ -5,8 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>8월 10일, 청년문화예술패스에 책이 들어옵니다</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;900&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
 <style>
 :root{
   --paper:#FAFAF6;
@@ -15,6 +16,27 @@
   --marker:#FFE84B;
   --blue:#2B4BF2;
   --line:#E4E3DC;
+
+  /* 확인 도구용 추가 변수 (문서2에서 가져옴) */
+  --blue-deep:#1D3AA8;
+  --blue-tint:#EEF1FC;
+  --blue-line:#C9D3F5;
+  --ok:#1F8A5D;
+  --ok-deep:#146844;
+  --ok-tint:#E7F5EE;
+  --ok-line:#BCE2CF;
+  --ng:#D6494F;
+  --ng-deep:#A93338;
+  --ng-tint:#FCEDEE;
+  --ng-line:#F3C3C6;
+  --r-sm:8px;
+  --r-md:12px;
+  --r-lg:18px;
+  --shadow:0 2px 10px rgba(32,38,58,.06);
+  --mono:'IBM Plex Mono','Courier New',monospace;
+  --line-soft:#F1EFE8;
+  --card:#FFFFFF;
+  --muted:#878DA2;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -190,6 +212,117 @@ footer{
 @media (max-width:400px){
   .bar-row{grid-template-columns:52px 1fr 56px;font-size:13px}
 }
+
+/* ============================================================
+   확인 도구 (문서2에서 가져온 부분) — .card 클래스 충돌 방지를 위해
+   컨테이너 클래스만 .chk-card 로 변경, 나머지는 문서2 원본 유지
+   ============================================================ */
+#checker{scroll-margin-top:20px}
+.tabs{display:flex;gap:6px;margin-bottom:18px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:2px}
+.tab{flex-shrink:0;display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:0 18px;font-family:inherit;font-size:14px;font-weight:700;color:var(--ink-soft);background:var(--card);border:1.5px solid var(--line);border-radius:999px;cursor:pointer;transition:all .15s;white-space:nowrap}
+.tab i{font-size:17px}
+.tab:hover{border-color:var(--muted)}
+.tab.active{color:#fff;background:var(--ink);border-color:var(--ink)}
+.pane{display:none}
+.pane.active{display:block}
+.chk-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow);padding:22px;margin-bottom:14px}
+.card-label{font-size:12px;font-weight:800;letter-spacing:.08em;color:var(--blue);margin-bottom:12px;text-transform:uppercase}
+.isbn-row{display:flex;gap:10px}
+@media (max-width:520px){.isbn-row{flex-direction:column}}
+.isbn-input-wrap{flex:1;position:relative}
+.isbn-input-wrap>i{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:19px;color:var(--muted);pointer-events:none}
+#isbn-input{width:100%;height:54px;padding:0 14px 0 44px;font-family:var(--mono);font-size:16px;letter-spacing:.08em;border:1.5px solid var(--line);border-radius:var(--r-md);outline:none;color:var(--ink);background:#fff;transition:border-color .15s,box-shadow .15s}
+#isbn-input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(43,80,214,.14)}
+#isbn-input::placeholder{color:#C2C6D4;letter-spacing:.04em}
+.check-btn{height:54px;padding:0 26px;background:var(--blue);color:#fff;font-family:inherit;font-size:15px;font-weight:700;border:none;border-radius:var(--r-md);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:7px;transition:background .15s,transform .12s;white-space:nowrap}
+.check-btn:hover{background:var(--blue-deep)}
+.check-btn:active{transform:scale(.97)}
+.check-btn i{font-size:18px}
+.try-row{margin-top:12px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+.try-btn{font-family:var(--mono);font-size:12.5px;font-weight:600;background:var(--blue-tint);color:var(--blue-deep);border:1px solid var(--blue-line);border-radius:999px;padding:5px 12px;cursor:pointer;transition:background .15s}
+.try-btn:hover{background:#E0E7FA}
+.strip-wrap{margin-top:20px}
+.strip-title{font-size:12px;font-weight:600;color:var(--muted);margin-bottom:8px}
+.digit-strip{display:flex;gap:5px;align-items:flex-end}
+.digit-box{flex:1;min-width:0;text-align:center}
+.d-label{font-size:10.5px;font-weight:600;color:var(--muted);margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.d-char{font-family:var(--mono);font-size:15px;font-weight:600;border-radius:var(--r-sm);padding:8px 3px;border:1.5px solid var(--line);background:#F5F6F8;color:var(--muted);min-height:42px;display:flex;align-items:center;justify-content:center;transition:background .2s,color .2s,border-color .2s;overflow:hidden}
+.d-char.hit{background:var(--blue-tint);color:var(--blue-deep);border-color:var(--blue-line)}
+.d-char.ok-green{background:var(--ok-tint);color:var(--ok-deep);border-color:var(--ok-line)}
+.d-char.miss{background:var(--ng-tint);color:var(--ng-deep);border-color:var(--ng-line)}
+.digit-sep{font-size:20px;color:var(--line);align-self:center;flex-shrink:0}
+@media (max-width:480px){.d-char{font-size:12.5px;padding:8px 2px}#d-isbn{letter-spacing:-.03em}}
+.result-card{border-radius:var(--r-lg);border:1.5px solid var(--line);padding:22px;background:var(--card);margin-bottom:14px;transition:border-color .2s,background .2s}
+.result-card.pass{background:var(--ok-tint);border-color:var(--ok-line)}
+.result-card.fail{background:var(--ng-tint);border-color:var(--ng-line)}
+.result-head{display:flex;align-items:center;gap:12px}
+.result-status-icon{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:21px;background:var(--line-soft);color:var(--muted)}
+.result-card.pass .result-status-icon{background:var(--ok);color:#fff}
+.result-card.fail .result-status-icon{background:var(--ng);color:#fff}
+.result-title{font-size:16px;font-weight:800;line-height:1.45}
+.result-card.idle .result-title{color:var(--muted);font-weight:600}
+.result-card.pass .result-title{color:var(--ok-deep)}
+.result-card.fail .result-title{color:var(--ng-deep)}
+.check-list{list-style:none;display:flex;flex-direction:column;gap:9px;margin-top:16px}
+.check-list:empty{margin-top:0}
+.check-item{display:flex;align-items:flex-start;gap:10px;font-size:14px;line-height:1.55;padding:12px 14px;border-radius:var(--r-md);background:rgba(255,255,255,.75)}
+.check-item.item-ok{border-left:3px solid var(--ok)}
+.check-item.item-ng{border-left:3px solid var(--ng)}
+.ci-icon{font-size:18px;margin-top:1px;flex-shrink:0}
+.item-ok .ci-icon{color:var(--ok)}
+.item-ng .ci-icon{color:var(--ng)}
+.ci-label{font-weight:700;color:var(--ink);display:block}
+.ci-sub{font-size:13px;color:var(--ink-soft);display:block;margin-top:2px}
+#batch-input{width:100%;font-family:var(--mono);font-size:13px;line-height:1.9;border:1.5px solid var(--line);border-radius:var(--r-md);padding:13px 14px;resize:vertical;min-height:110px;outline:none;color:var(--ink);background:#fff}
+#batch-input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(43,80,214,.14)}
+.batch-actions{display:flex;gap:8px;margin-top:12px}
+.btn-primary{flex:1;height:48px;background:var(--blue);color:#fff;font-family:inherit;font-size:15px;font-weight:700;border:none;border-radius:var(--r-md);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;transition:background .15s}
+.btn-primary:hover{background:var(--blue-deep)}
+.btn-secondary{height:48px;padding:0 20px;background:var(--card);color:var(--ink-soft);font-family:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--line);border-radius:var(--r-md);cursor:pointer;transition:border-color .15s}
+.btn-secondary:hover{border-color:var(--muted)}
+.batch-summary{display:flex;flex-wrap:wrap;gap:8px 16px;margin:16px 0 10px;font-size:13.5px;font-weight:600}
+.batch-summary .s-total{color:var(--muted)}
+.batch-summary .s-pass{color:var(--ok-deep)}
+.batch-summary .s-fail{color:var(--ng-deep)}
+.batch-summary .s-err{color:var(--muted)}
+.batch-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:var(--r-md);border:1px solid var(--line)}
+.batch-table{width:100%;min-width:480px;border-collapse:collapse;font-size:13px;background:var(--card)}
+.batch-table th{background:var(--blue-tint);color:var(--blue-deep);font-weight:700;font-size:11.5px;text-align:left;padding:10px 14px;letter-spacing:.03em;border-bottom:1px solid var(--blue-line)}
+.batch-table td{padding:10px 14px;border-bottom:1px solid var(--line-soft);vertical-align:middle}
+.batch-table tr:last-child td{border-bottom:none}
+.batch-table tr.r-pass td{color:var(--ok-deep)}
+.batch-table tr.r-fail td{color:var(--ng-deep)}
+.batch-table tr.r-err td{color:var(--muted)}
+.batch-table td.isbn-col{font-family:var(--mono);font-size:12px;white-space:nowrap}
+.badge{display:inline-block;font-size:11.5px;font-weight:700;padding:4px 11px;border-radius:999px;white-space:nowrap}
+.badge.b-pass{background:var(--ok);color:#fff}
+.badge.b-fail{background:var(--ng);color:#fff}
+.badge.b-err{background:var(--line);color:var(--ink-soft)}
+.guide-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:600px){.guide-grid{grid-template-columns:1fr}}
+.guide-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:20px;box-shadow:var(--shadow)}
+.guide-card-head{display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:13px;border-bottom:1px solid var(--line-soft)}
+.guide-card-head i{font-size:20px;color:var(--blue)}
+.guide-card-head strong{font-size:15px;font-weight:800}
+.guide-card-head span{font-size:12px;color:var(--muted);display:block;margin-top:1px}
+.guide-row{display:flex;align-items:baseline;gap:10px;padding:6px 0;font-size:14px;border-bottom:1px solid var(--line-soft)}
+.guide-row:last-child{border-bottom:none}
+.guide-code{font-family:var(--mono);font-size:13px;font-weight:600;width:22px;flex-shrink:0;text-align:center}
+.guide-row.allowed .guide-code{color:var(--ok-deep)}
+.guide-row.blocked .guide-code{color:var(--ng)}
+.guide-desc{color:var(--ink-soft);flex:1}
+.guide-pill{font-size:11px;padding:2px 9px;border-radius:999px;font-weight:700;flex-shrink:0}
+.guide-pill.ok{background:var(--ok-tint);color:var(--ok-deep)}
+.guide-pill.ng{background:var(--ng-tint);color:var(--ng-deep)}
+.content-guide{margin-top:4px}
+.content-guide-row{display:flex;align-items:center;gap:12px;padding:8px 13px;border-radius:var(--r-sm);margin-bottom:5px;font-size:13.5px}
+.content-guide-row.ok-row{background:var(--ok-tint)}
+.content-guide-row.ng-row{background:var(--ng-tint)}
+.content-guide-row .range-code{font-family:var(--mono);font-size:12px;font-weight:600;width:82px;flex-shrink:0;line-height:1.5}
+.ok-row .range-code{color:var(--ok-deep)}
+.ng-row .range-code{color:var(--ng-deep)}
+.ok-row .range-label{color:var(--ok-deep)}
+.ng-row .range-label{color:var(--ng-deep)}
 </style>
 </head>
 <body>
@@ -316,6 +449,170 @@ footer{
   </div>
 </section>
 
+<!-- 7.5. 지원 대상 도서 확인 도구 (문서2에서 가져옴, 스크린샷 UI) -->
+<section class="sec" id="checker">
+  <p class="eyebrow reveal">지금 바로 확인해보세요</p>
+  <h2 class="reveal">우리 책도<br><span class="hl">지원 대상</span>일까?</h2>
+  <p class="lead reveal">ISBN과 부가기호 18자리만 입력하면 독자대상·발행형태·내용분류 세 가지 기준을 자동으로 검사해요. 담당 도서를 미리 확인해서 홍보에 활용해 보세요.</p>
+
+  <div class="reveal">
+    <div class="tabs" role="tablist">
+      <button class="tab active" onclick="switchTab('single')" role="tab">
+        <i class="ti ti-barcode" aria-hidden="true"></i> 한 권 확인
+      </button>
+      <button class="tab" onclick="switchTab('batch')" role="tab">
+        <i class="ti ti-list-check" aria-hidden="true"></i> 여러 권 확인
+      </button>
+      <button class="tab" onclick="switchTab('guide')" role="tab">
+        <i class="ti ti-info-circle" aria-hidden="true"></i> 분류 기준 보기
+      </button>
+    </div>
+
+    <!-- 한 권 확인 -->
+    <div id="pane-single" class="pane active" role="tabpanel">
+      <div class="chk-card">
+        <div class="card-label">ISBN + 부가기호 입력</div>
+        <div class="isbn-row">
+          <div class="isbn-input-wrap">
+            <i class="ti ti-barcode" aria-hidden="true"></i>
+            <input type="text" id="isbn-input" maxlength="24" inputmode="numeric"
+              placeholder="9791162540000 03810"
+              oninput="onInput()" onkeydown="if(event.key==='Enter')check()" />
+          </div>
+          <button class="check-btn" onclick="check()">
+            <i class="ti ti-search" aria-hidden="true"></i> 확인
+          </button>
+        </div>
+        <div class="try-row">
+          <span>처음이라면 예시로 눌러 보세요 →</span>
+          <button class="try-btn" onclick="tryExample('9791162540000 03810')">문학 예시</button>
+          <button class="try-btn" onclick="tryExample('9788912345678 15400')">제외 예시</button>
+        </div>
+
+        <div class="strip-wrap">
+          <div class="strip-title">번호 분석 — ISBN 13자리 + 부가기호 5자리</div>
+          <div class="digit-strip">
+            <div class="digit-box" style="flex:5;min-width:0">
+              <div class="d-label">ISBN 13자리</div>
+              <div class="d-char" id="d-isbn">— — — — — — — — — — — — —</div>
+            </div>
+            <div class="digit-sep">–</div>
+            <div class="digit-box">
+              <div class="d-label">독자대상</div>
+              <div class="d-char" id="d1">–</div>
+            </div>
+            <div class="digit-box">
+              <div class="d-label">발행형태</div>
+              <div class="d-char" id="d2">–</div>
+            </div>
+            <div class="digit-box" style="flex:1.5">
+              <div class="d-label">내용분류</div>
+              <div class="d-char" id="d3">– – –</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="result-card idle" id="result-card">
+        <div class="result-head">
+          <div class="result-status-icon">
+            <i class="ti ti-clipboard-text" id="result-icon" aria-hidden="true"></i>
+          </div>
+          <span class="result-title" id="result-title">책 뒤표지의 18자리 번호를 입력해 주세요</span>
+        </div>
+        <ul class="check-list" id="check-list"></ul>
+      </div>
+    </div>
+
+    <!-- 여러 권 확인 -->
+    <div id="pane-batch" class="pane" role="tabpanel">
+      <div class="chk-card">
+        <div class="card-label">ISBN 목록 — 한 줄에 한 권씩, 책 제목을 함께 적어도 돼요</div>
+        <textarea id="batch-input" placeholder="9791162540000 03810 책제목
+9788936434120 04810 채식주의자
+9788934972464 01800"></textarea>
+        <div class="batch-actions">
+          <button class="btn-primary" onclick="batchCheck()">
+            <i class="ti ti-list-check" aria-hidden="true"></i> 한 번에 확인
+          </button>
+          <button class="btn-secondary" onclick="clearBatch()">지우기</button>
+        </div>
+      </div>
+      <div id="batch-result"></div>
+    </div>
+
+    <!-- 분류 기준 -->
+    <div id="pane-guide" class="pane" role="tabpanel">
+      <div class="guide-grid">
+        <div class="guide-card">
+          <div class="guide-card-head">
+            <i class="ti ti-users" aria-hidden="true"></i>
+            <div>
+              <strong>독자대상기호</strong>
+              <span>부가기호 첫째 자리 — 누구를 위한 책인가</span>
+            </div>
+          </div>
+          <div class="guide-row allowed"><span class="guide-code">0</span><span class="guide-desc">교양</span><span class="guide-pill ok">허용</span></div>
+          <div class="guide-row blocked"><span class="guide-code">1</span><span class="guide-desc">실용</span><span class="guide-pill ng">제외</span></div>
+          <div class="guide-row blocked"><span class="guide-code">4</span><span class="guide-desc">청소년</span><span class="guide-pill ng">제외</span></div>
+          <div class="guide-row blocked"><span class="guide-code">5</span><span class="guide-desc">참고서 (중·고등용)</span><span class="guide-pill ng">제외</span></div>
+          <div class="guide-row blocked"><span class="guide-code">6</span><span class="guide-desc">참고서 (초등용)</span><span class="guide-pill ng">제외</span></div>
+          <div class="guide-row blocked"><span class="guide-code">7</span><span class="guide-desc">아동</span><span class="guide-pill ng">제외</span></div>
+          <div class="guide-row allowed"><span class="guide-code">9</span><span class="guide-desc">전문</span><span class="guide-pill ok">허용</span></div>
+        </div>
+        <div class="guide-card">
+          <div class="guide-card-head">
+            <i class="ti ti-book" aria-hidden="true"></i>
+            <div>
+              <strong>발행형태기호</strong>
+              <span>부가기호 둘째 자리 — 어떤 형태의 책인가</span>
+            </div>
+          </div>
+          <div class="guide-row allowed"><span class="guide-code">0</span><span class="guide-desc">문고본</span><span class="guide-pill ok">허용</span></div>
+          <div class="guide-row blocked"><span class="guide-code">1</span><span class="guide-desc">사전</span><span class="guide-pill ng">제외</span></div>
+          <div class="guide-row allowed"><span class="guide-code">2</span><span class="guide-desc">신서판</span><span class="guide-pill ok">허용</span></div>
+          <div class="guide-row allowed"><span class="guide-code">3</span><span class="guide-desc">단행본</span><span class="guide-pill ok">허용</span></div>
+          <div class="guide-row allowed"><span class="guide-code">4</span><span class="guide-desc">전집·총서·다권본</span><span class="guide-pill ok">허용</span></div>
+          <div class="guide-row blocked"><span class="guide-code">5</span><span class="guide-desc">전자출판물 (e-book 등)</span><span class="guide-pill ng">제외</span></div>
+          <div class="guide-row allowed"><span class="guide-code">6</span><span class="guide-desc">도감</span><span class="guide-pill ok">허용</span></div>
+          <div class="guide-row allowed"><span class="guide-code">7</span><span class="guide-desc">그림책·만화</span><span class="guide-pill ok">허용</span></div>
+          <div class="guide-row allowed"><span class="guide-code">8</span><span class="guide-desc">혼합 자료</span><span class="guide-pill ok">허용</span></div>
+        </div>
+      </div>
+
+      <div class="chk-card" style="margin-top:14px">
+        <div class="guide-card-head" style="margin-bottom:14px">
+          <i class="ti ti-tag" aria-hidden="true"></i>
+          <div>
+            <strong>내용분류기호</strong>
+            <span>부가기호 셋째~다섯째 자리 — 어떤 분야의 책인가</span>
+          </div>
+        </div>
+        <div class="content-guide">
+          <div class="content-guide-row ok-row"><span class="range-code">000–009</span><span class="range-label">총류 일반</span></div>
+          <div class="content-guide-row ok-row"><span class="range-code">040–049</span><span class="range-label">강연집·수필집·연설문집</span></div>
+          <div class="content-guide-row ok-row"><span class="range-code">100–190</span><span class="range-label">철학·심리학·윤리학</span></div>
+          <div class="content-guide-row ok-row"><span class="range-code">200–290</span><span class="range-label">종교</span></div>
+          <div class="content-guide-row ok-row"><span class="range-code">300–309</span><span class="range-label">사회과학 일반</span></div>
+          <div class="content-guide-row ok-row"><span class="range-code">380–389</span><span class="range-label">풍습·민속학·예절</span></div>
+          <div class="content-guide-row ok-row"><span class="range-code">600–690</span><span class="range-label">예술 (회화·음악·공연·영화 관련 서적 등)</span></div>
+          <div class="content-guide-row ok-row"><span class="range-code">700–709</span><span class="range-label">언어 일반</span></div>
+          <div class="content-guide-row ok-row"><span class="range-code">800–890</span><span class="range-label">문학 (한국·영미·일본·중국 등 전체)</span></div>
+          <div class="content-guide-row ok-row"><span class="range-code">900–990</span><span class="range-label">역사·지리·전기</span></div>
+          <div style="height:10px"></div>
+          <div class="content-guide-row ng-row"><span class="range-code">010–039<br>050–090</span><span class="range-label">총류 기타 (도서학, 백과사전, 연속간행물 등)</span></div>
+          <div class="content-guide-row ng-row"><span class="range-code">310–379<br>390–399</span><span class="range-label">사회과학 기타 (경제·정치·법률·교육 등)</span></div>
+          <div class="content-guide-row ng-row"><span class="range-code">400–490</span><span class="range-label">자연과학</span></div>
+          <div class="content-guide-row ng-row"><span class="range-code">500–590</span><span class="range-label">기술과학</span></div>
+          <div class="content-guide-row ng-row"><span class="range-code">710–790</span><span class="range-label">개별 언어 (영어, 일본어, 중국어 등)</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="chart-note reveal" style="margin-top:16px">본 확인 도구는 참고용 자가 확인용이며, 최종 지원 여부는 한국문화예술위원회의 공식 기준을 따릅니다.</p>
+</section>
+
 <!-- 8. 일정 + 링크 + CTA -->
 <section class="sec">
   <p class="eyebrow reveal">일정과 링크</p>
@@ -349,6 +646,178 @@ const io=new IntersectionObserver(es=>{
   es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('inview'); io.unobserve(e.target);} });
 },{threshold:.25});
 document.querySelectorAll('.sec').forEach(s=>io.observe(s));
+</script>
+
+<!-- 확인 도구 스크립트 (문서2에서 가져옴) -->
+<script>
+const READER_ALLOW = new Set(['0','9']);
+const FORMAT_BLOCK = new Set(['1','5']);
+const CONTENT_RANGES = [
+  [0,9,'총류 일반'],[40,49,'강연집·수필집·연설문집'],
+  [100,190,'철학·심리학·윤리학'],[200,290,'종교'],
+  [300,309,'사회과학 일반'],[380,389,'풍습·민속학·예절'],
+  [600,690,'예술'],[700,709,'언어 일반'],
+  [800,890,'문학'],[900,990,'역사'],
+];
+const R1MAP = {'0':'교양','1':'실용','2':'(예비)','3':'(예비)','4':'청소년','5':'참고서(중·고)','6':'참고서(초등)','7':'아동','8':'(예비)','9':'전문'};
+const R2MAP = {'0':'문고본','1':'사전','2':'신서판','3':'단행본','4':'전집·총서','5':'전자출판물','6':'도감','7':'그림책·만화','8':'혼합자료'};
+
+function parseISBN(raw) {
+  const d = raw.replace(/[\s\-]/g,'');
+  if (d.length !== 18 || /\D/.test(d)) return null;
+  return { isbn:d.slice(0,13), d1:d[13], d2:d[14], d3:parseInt(d.slice(15),10), d3raw:d.slice(15) };
+}
+
+function getContentLabel(n) {
+  for (const [lo,hi,label] of CONTENT_RANGES) if (n>=lo && n<=hi) return label;
+  return null;
+}
+
+function evaluate(p) {
+  const r1ok = READER_ALLOW.has(p.d1);
+  const r2ok = !FORMAT_BLOCK.has(p.d2);
+  const label = getContentLabel(p.d3);
+  const r3ok = !!label;
+  return {
+    pass: r1ok && r2ok && r3ok,
+    checks: [
+      { ok:r1ok, label:`독자대상 (${p.d1}) — ${R1MAP[p.d1]||'기타'}`, sub: r1ok ? '허용 대상이에요 (교양·전문)' : '교양(0) 또는 전문(9) 대상 도서만 지원돼요' },
+      { ok:r2ok, label:`발행형태 (${p.d2}) — ${R2MAP[p.d2]||'기타'}`, sub: r2ok ? '허용되는 발행 형태예요' : '사전(1)과 전자출판물(5)은 지원되지 않아요' },
+      { ok:r3ok, label:`내용분류 (${p.d3raw}) — ${r3ok ? label : '지원 외 분야'}`, sub: r3ok ? '허용 분야에 포함돼요' : '문학·철학·예술·역사·종교·총류일반·사회과학일반·언어일반 분야만 지원돼요' },
+    ]
+  };
+}
+
+function resetStrip() {
+  const dIsbn = document.getElementById('d-isbn');
+  dIsbn.className='d-char';
+  dIsbn.textContent='— — — — — — — — — — — — —';
+  [['d1','–'],['d2','–'],['d3','– – –']].forEach(([id,txt]) => {
+    const el = document.getElementById(id);
+    el.className='d-char';
+    el.textContent=txt;
+  });
+}
+
+function tryExample(v) {
+  document.getElementById('isbn-input').value = v;
+  check();
+}
+
+function check() {
+  const raw = document.getElementById('isbn-input').value;
+  const p = parseISBN(raw);
+  const card = document.getElementById('result-card');
+  const icon = document.getElementById('result-icon');
+  const title = document.getElementById('result-title');
+  const list = document.getElementById('check-list');
+
+  if (!p) {
+    resetStrip();
+    card.className='result-card idle';
+    icon.className='ti ti-clipboard-text';
+    title.textContent='숫자 18자리를 입력해 주세요 (ISBN 13자리 + 부가기호 5자리)';
+    list.innerHTML='';
+    return;
+  }
+
+  const result = evaluate(p);
+
+  document.getElementById('d-isbn').textContent = p.isbn;
+  document.getElementById('d-isbn').className = 'd-char hit';
+
+  const ids=['d1','d2','d3'], oks=[result.checks[0].ok, result.checks[1].ok, result.checks[2].ok];
+  const vals=[p.d1, p.d2, p.d3raw];
+  ids.forEach((id,i) => {
+    document.getElementById(id).textContent = vals[i];
+    document.getElementById(id).className = 'd-char ' + (oks[i] ? 'ok-green' : 'miss');
+  });
+
+  card.className = 'result-card ' + (result.pass ? 'pass' : 'fail');
+  icon.className = result.pass ? 'ti ti-circle-check' : 'ti ti-circle-x';
+  title.textContent = result.pass
+    ? '구매 가능! 청년문화예술패스 지원 대상 도서예요'
+    : '아쉽지만 지원 대상이 아닌 도서예요';
+
+  list.innerHTML = result.checks.map(c => `
+    <li class="check-item ${c.ok ? 'item-ok' : 'item-ng'}">
+      <i class="ci-icon ti ${c.ok ? 'ti-circle-check' : 'ti-circle-x'}" aria-hidden="true"></i>
+      <span>
+        <span class="ci-label">${c.label}</span>
+        <span class="ci-sub">${c.sub}</span>
+      </span>
+    </li>`).join('');
+}
+
+function onInput() {
+  if (document.getElementById('isbn-input').value.replace(/[\s\-]/g,'').length===18) check();
+}
+
+function switchTab(name) {
+  ['single','batch','guide'].forEach((n,i) => {
+    document.querySelectorAll('.tab')[i].classList.toggle('active', n===name);
+    document.getElementById('pane-'+n).classList.toggle('active', n===name);
+  });
+}
+
+function escapeHTML(s) {
+  return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function batchCheck() {
+  const lines = document.getElementById('batch-input').value.split('\n').filter(l=>l.trim());
+  if (!lines.length) return;
+
+  const rows = lines.map(line => {
+    const digits = line.replace(/[\s\-]/g,'').replace(/\D/g,'');
+    const p = parseISBN(digits.slice(0,18));
+    const title = line.replace(/[\d\-]/g,'').trim() || '';
+    if (!p) return { isbn:'—', title:line.trim().slice(0,20), pass:null, reason:'형식 오류' };
+    const res = evaluate(p);
+    const failReasons = res.checks.filter(c=>!c.ok).map(c=>c.label.split('—')[0].trim()).join(', ');
+    return { isbn:p.isbn+' '+p.d1+p.d2+p.d3raw, title, pass:res.pass, reason: res.pass ? (title||'—') : failReasons };
+  });
+
+  const pc=rows.filter(r=>r.pass===true).length;
+  const fc=rows.filter(r=>r.pass===false).length;
+  const ec=rows.filter(r=>r.pass===null).length;
+
+  let html = `<div class="batch-summary">
+    <span class="s-total">총 ${rows.length}권</span>
+    <span class="s-pass">✓ 구매 가능 ${pc}권</span>
+    <span class="s-fail">✗ 구매 불가 ${fc}권</span>
+    ${ec ? `<span class="s-err">⚠ 형식 오류 ${ec}건</span>` : ''}
+  </div>
+  <div class="batch-scroll">
+  <table class="batch-table">
+    <thead><tr>
+      <th>ISBN + 부가기호</th>
+      <th>서명·사유</th>
+      <th style="text-align:right">결과</th>
+    </tr></thead><tbody>`;
+
+  rows.forEach(r => {
+    const cls = r.pass===true?'r-pass':r.pass===false?'r-fail':'r-err';
+    const badge = r.pass===true
+      ? '<span class="badge b-pass">구매 가능</span>'
+      : r.pass===false
+        ? '<span class="badge b-fail">구매 불가</span>'
+        : '<span class="badge b-err">형식 오류</span>';
+    html += `<tr class="${cls}">
+      <td class="isbn-col">${escapeHTML(r.isbn)}</td>
+      <td>${escapeHTML(r.reason||'—')}</td>
+      <td style="text-align:right">${badge}</td>
+    </tr>`;
+  });
+
+  html += '</tbody></table></div>';
+  document.getElementById('batch-result').innerHTML = html;
+}
+
+function clearBatch() {
+  document.getElementById('batch-input').value='';
+  document.getElementById('batch-result').innerHTML='';
+}
 </script>
 </body>
 </html>
